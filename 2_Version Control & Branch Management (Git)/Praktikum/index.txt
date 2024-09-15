@@ -1,3 +1,7 @@
 Header	: ini adalah bagian header (featureA)
 Footer	: ini adalah bagian footer (featureB)
 Footer	: ini adalah konflik yang dibuat featureA (resolve)
+
+
+
+warning dari development
