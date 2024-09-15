@@ -1,2 +1,2 @@
 Header	: ini adalah bagian header (featureA)
-Footer	:
+Footer	: ini adalah konflik yang dibuat featureA
