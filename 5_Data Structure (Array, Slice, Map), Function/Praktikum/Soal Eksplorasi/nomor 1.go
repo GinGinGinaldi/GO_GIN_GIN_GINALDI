@@ -15,7 +15,7 @@ type Course struct {
 
 func main() {
 	// Membuka file CSV
-	file, err := os.Open("survey.csv")
+	file, err := os.Open("C:/Users/ADITT/Documents/GO_GIN GIN GINALDI/5_Data Structure (Array, Slice, Map), Function/Praktikum/Soal Eksplorasi/survey.csv")
 	if err != nil {
 		fmt.Println("Error membuka file:", err)
 		return

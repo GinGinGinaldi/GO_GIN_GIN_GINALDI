@@ -19,9 +19,9 @@ func cekBilanganPrima(angka int) bool {
 }
 
 func main() {
-	fmt.Println(cekBilanganPrima(1000000007))
-	fmt.Println(cekBilanganPrima(13))
-	fmt.Println(cekBilanganPrima(17))
-	fmt.Println(cekBilanganPrima(20))
-	fmt.Println(cekBilanganPrima(35))
+	fmt.Println(cekBilanganPrima(1000000007)) // true
+	fmt.Println(cekBilanganPrima(13))         // true
+	fmt.Println(cekBilanganPrima(17))         // true
+	fmt.Println(cekBilanganPrima(20))         // false
+	fmt.Println(cekBilanganPrima(35))         // false
 }

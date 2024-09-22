@@ -1,1 +1,5 @@
-#
+# String, Advance Function, Pointer, Struct, Method,  Interface, Package & Error Handling
+
+1.  String digunakan untuk menyimpan teks, sedangkan Struct mengelompokkan berbagai tipe data untuk merepresentasikan objek. Contohnya, sebuah struct Person dapat memiliki field seperti Name dan Age.
+2.  Advanced Functions dapat menerima argumen variadic dan mengembalikan beberapa nilai, sementara Method adalah fungsi yang terikat pada struct, memungkinkan objek untuk memiliki perilaku tertentu. Misalnya, method Greet dalam struct Person bisa menyapa berdasarkan nama.
+3.  Pointer memungkinkan akses langsung ke alamat memori dari variabel, meningkatkan efisiensi memori. Interface mendefinisikan kontrak untuk method, memungkinkan berbagai tipe untuk dioperasikan dengan cara yang sama. Package mengorganisir kode menjadi modul yang dapat digunakan kembali, dan Error Handling menangani kesalahan dengan cara yang sistematis, memberikan informasi yang berguna saat terjadi masalah.
