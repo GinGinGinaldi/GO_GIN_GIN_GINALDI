@@ -1,0 +1,135 @@
+
+-- Insert 5 operators into the operators table
+INSERT INTO operators (name) VALUES 
+('Operator 1'), ('Operator 2'), ('Operator 3'), ('Operator 4'), ('Operator 5');
+
+-- Insert 3 product types
+INSERT INTO product_types (name) VALUES 
+('Product Type 1'), ('Product Type 2'), ('Product Type 3');
+
+-- Insert 2 products with product_type_id = 1 and operators_id = 3
+INSERT INTO products (name, product_type_id, operator_id) VALUES 
+('Product A', 1, 3), 
+('Product B', 1, 3);
+
+-- Insert 3 products with product_type_id = 2 and operators_id = 1
+INSERT INTO products (name, product_type_id, operator_id) VALUES 
+('Product C', 2, 1), 
+('Product D', 2, 1), 
+('Product E', 2, 1);
+
+-- Insert 3 products with product_type_id = 3 and operators_id = 4
+INSERT INTO products (name, product_type_id, operator_id) VALUES 
+('Product F', 3, 4), 
+('Product G', 3, 4), 
+('Product H', 3, 4);
+
+-- Insert product descriptions for each product
+INSERT INTO product_descriptions (product_id, description) VALUES 
+(1, 'Description A'), 
+(2, 'Description B'), 
+(3, 'Description C'), 
+(4, 'Description D'), 
+(5, 'Description E'), 
+(6, 'Description F'), 
+(7, 'Description G'), 
+(8, 'Description H');
+
+-- Insert 3 payment methods
+INSERT INTO payment_methods (name) VALUES 
+('Credit Card'), 
+('Bank Transfer'), 
+('Cash');
+
+-- Insert 5 users into the users table
+INSERT INTO users (name, gender) VALUES 
+('User 1', 'M'), 
+('User 2', 'F'), 
+('User 3', 'M'), 
+('User 4', 'F'), 
+('User 5', 'M');
+
+-- Insert 3 transactions for each user
+INSERT INTO transactions (user_id, total_amount) VALUES 
+(1, 100), (1, 200), (1, 150), 
+(2, 120), (2, 220), (2, 300), 
+(3, 130), (3, 240), (3, 160), 
+(4, 140), (4, 250), (4, 180), 
+(5, 150), (5, 260), (5, 190);
+
+-- Insert 3 products into each transaction
+INSERT INTO transaction_details (transaction_id, product_id, qty) VALUES 
+(1, 1, 2), (1, 2, 1), (1, 3, 3), 
+(2, 4, 1), (2, 5, 2), (2, 6, 1), 
+(3, 7, 2), (3, 8, 1), (3, 1, 1);
+
+-- Select users with gender M
+SELECT name FROM users WHERE gender = 'M';
+
+-- Select product with id = 3
+SELECT * FROM products WHERE id = 3;
+
+-- Select users with created_at in the last 7 days and name contains 'a'
+SELECT * FROM users WHERE created_at >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND name LIKE '%a%';
+
+-- Count the number of users with gender F
+SELECT COUNT(*) FROM users WHERE gender = 'F';
+
+-- Display users ordered by name alphabetically
+SELECT * FROM users ORDER BY name ASC;
+
+-- Display 5 products
+SELECT * FROM products LIMIT 5;
+
+-- Update product name with id = 1 to 'product dummy'
+UPDATE products SET name = 'product dummy' WHERE id = 1;
+
+-- Update qty to 3 in transaction details where product_id = 1
+UPDATE transaction_details SET qty = 3 WHERE product_id = 1;
+
+-- Delete product with id = 1
+DELETE FROM products WHERE id = 1;
+
+-- Delete products where product_type_id = 1
+DELETE FROM products WHERE product_type_id = 1;
+
+-- Join data of transactions from user id 1 and user id 2
+SELECT * FROM transactions WHERE user_id IN (1, 2);
+
+-- Display the total amount of transactions for user id 1
+SELECT SUM(total_amount) AS total_amount FROM transactions WHERE user_id = 1;
+
+-- Display the total amount of transactions with product type 2
+SELECT SUM(total_amount) AS total_amount
+FROM transactions t
+JOIN transaction_details td ON t.id = td.transaction_id
+JOIN products p ON td.product_id = p.id
+WHERE p.product_type_id = 2;
+
+-- Display all fields from the product table and product type name
+SELECT p.*, pt.name AS product_type_name
+FROM products p
+JOIN product_types pt ON p.product_type_id = pt.id;
+
+-- Display all fields from transaction, product, and user tables
+SELECT t.*, p.name AS product_name, u.name AS user_name
+FROM transactions t
+JOIN transaction_details td ON t.id = td.transaction_id
+JOIN products p ON td.product_id = p.id
+JOIN users u ON t.user_id = u.id;
+
+-- Create function to delete transaction and its details
+DELIMITER //
+
+CREATE PROCEDURE delete_transaction(IN transactionId INT)
+BEGIN
+    DELETE FROM transaction_details WHERE transaction_id = transactionId;
+    DELETE FROM transactions WHERE id = transactionId;
+END //
+
+DELIMITER ;
+
+-- Display products not found in transaction details using sub-query
+SELECT * FROM products p WHERE NOT EXISTS (
+    SELECT 1 FROM transaction_details td WHERE td.product_id = p.id
+);
