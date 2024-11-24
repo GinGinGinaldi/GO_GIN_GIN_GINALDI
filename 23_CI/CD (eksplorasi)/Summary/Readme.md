@@ -1,1 +1,8 @@
-#
+# CI/CD
+
+1. CI/CD Overview
+Continuous Integration (CI) dan Continuous Deployment (CD) adalah praktik dalam pengembangan perangkat lunak yang bertujuan untuk otomatisasi proses pengujian dan penyebaran kode. CI memungkinkan pengembang untuk secara teratur menggabungkan perubahan kode ke dalam repositori, di mana setiap perubahan diuji secara otomatis. CD melanjutkan proses ini dengan secara otomatis menerapkan perubahan yang telah lulus pengujian ke lingkungan produksi, sehingga mempercepat waktu rilis dan meningkatkan kualitas perangkat lunak.
+2. GitHub Actions Introduction
+GitHub Actions adalah alat yang disediakan oleh GitHub untuk mengotomatiskan alur kerja pengembangan perangkat lunak. Dengan GitHub Actions, kita dapat membuat alur kerja (workflows) yang menjalankan berbagai tugas seperti pengujian, linting, dan penyebaran setiap kali ada perubahan pada repositori. GitHub menyediakan lebih dari 13.000 aksi yang telah ditulis sebelumnya, sehingga memudahkan kita untuk membangun pipeline CI/CD tanpa harus memulai dari nol.
+3. CI/CD with GitHub Actions
+Mengimplementasikan CI/CD menggunakan GitHub Actions melibatkan pembuatan file YAML yang mendefinisikan alur kerja kita. Dalam file ini, kita dapat menentukan langkah-langkah yang harus dijalankan, seperti menjalankan pengujian atau melakukan penyebaran ke server. Dengan GitHub Actions, kita dapat mengotomatiskan proses ini dengan mudah, sehingga meningkatkan efisiensi dan mengurangi kemungkinan kesalahan saat melakukan deployment.
